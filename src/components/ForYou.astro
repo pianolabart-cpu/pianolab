@@ -1,0 +1,126 @@
+---
+import Button from "./Button.astro";
+import ArrowRight from "./icons/Arrow-right.astro";
+
+const perfiles = [
+  {
+    emoji: "🎹",
+    titulo: "Sin rumbo claro",
+    descripcion:
+      "Siempre has querido tocar piano, pero no sabes por dónde empezar. PianoLab te marca el camino desde la primera nota para que no pierdas tiempo en el vacío.",
+  },
+  {
+    emoji: "🚀",
+    titulo: "Enfoque en lo real",
+    descripcion:
+      "Quieres aprender de forma práctica y ver resultados reales. Menos teoría densa y más manos al teclado: nuestro método prioriza que hagas música desde el día uno.",
+  },
+  {
+    emoji: "🤝",
+    titulo: "Progreso guiado",
+    descripcion:
+      "Sabes que con acompañamiento avanzarás más rápido. Evita los vicios técnicos y el estancamiento con una guía que te ayuda a superar cada obstáculo en tiempo real.",
+  },
+  {
+    emoji: "⏱️",
+    titulo: "Optimización del tiempo",
+    descripcion:
+      "No necesitas dedicarle horas interminables. Con sesiones de práctica inteligente y enfocada, verás avances sólidos incluso con una agenda ocupada.",
+  },
+  {
+    emoji: "✨",
+    titulo: "Supera tus creencias",
+    descripcion:
+      "No importa tu edad ni si crees que no tienes 'talento'. El cerebro está diseñado para aprender; solo necesitas el método correcto para desbloquear tu musicalidad.",
+  },
+  {
+    emoji: "📖",
+    titulo: "De cero a cien",
+    descripcion:
+      "Olvida el miedo a lo complejo. No necesitas saber leer partituras ni tener conocimientos previos para interpretar las canciones que siempre has querido tocar.",
+  },
+];
+---
+
+<section class="w-full bg-gradient-to-b from-white via-[#FFF5EC]/40 to-white py-12 md:py-20">
+  <div class="mx-auto flex w-full flex-col items-center gap-12 px-4 sm:max-w-screen-lg sm:px-8">
+    <!-- Header -->
+    <div data-animate class="flex max-w-2xl flex-col items-start gap-3 text-left md:items-center md:text-center">
+      <p class="text-brand text-sm font-semibold tracking-widest uppercase">¿Es esto para mí?</p>
+      <h2 class="text-3xl leading-tight font-semibold text-gray-900 md:text-4xl">PianoLab es para ti si...</h2>
+      <p class="text-base leading-relaxed text-gray-500 sm:text-lg">
+        Reconócete en alguna de estas situaciones. Si es así, estás exactamente en el lugar correcto.
+      </p>
+    </div>
+
+    <!-- Grid de perfiles -->
+    <div class="grid w-full grid-cols-1 gap-x-6 gap-y-12 pt-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        perfiles.map((p, i) => (
+          <div
+            data-animate
+            style={`--delay: ${i * 80}ms`}
+            class="group relative rounded-2xl border border-gray-100 bg-white px-6 pt-12 pb-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F26A1B]/30 hover:shadow-xl"
+          >
+            {/* Ícono flotante a la izquierda */}
+            <div class="absolute -top-7 left-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-gray-200 bg-white text-3xl shadow-md transition-all duration-300 group-hover:scale-110 group-hover:border-[#F26A1B]/40 group-hover:shadow-lg md:left-1/2 md:-translate-x-1/2">
+              {p.emoji}
+            </div>
+            {/* Contenido */}
+            <div class="flex flex-col gap-2 text-left md:text-center">
+              <h3 class="text-base font-semibold text-gray-900">{p.titulo}</h3>
+              <p class="text-sm leading-relaxed text-gray-500">{p.descripcion}</p>
+            </div>
+            {/* Acento inferior que aparece en hover */}
+            <div class="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#F26A1B] to-[#E85A2A] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Bloque de cierre -->
+    <div
+      data-animate
+      class="group relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-[#F26A1B] to-[#E85A2A] p-10 text-center text-white md:p-14"
+    >
+      {/* Burbujas decorativas blancas */}
+      <span aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <span
+          class="absolute top-6 left-8 h-3 w-3 rounded-full bg-white/30 transition-transform duration-500 group-hover:-translate-y-1"
+        ></span>
+        <span
+          class="absolute top-16 left-24 h-1.5 w-1.5 rounded-full bg-white/40 transition-transform duration-500 group-hover:-translate-y-1.5"
+        ></span>
+        <span
+          class="absolute right-16 bottom-10 h-2 w-2 rounded-full bg-white/25 transition-transform duration-500 group-hover:-translate-y-1"
+        ></span>
+        <span
+          class="absolute top-10 right-8 h-1 w-1 rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-y-1.5"
+        ></span>
+        <span
+          class="absolute right-32 bottom-16 h-1.5 w-1.5 rounded-full bg-white/35 transition-transform duration-500 group-hover:-translate-y-2"
+        ></span>
+        <span class="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/20"
+        ></span>
+      </span>
+      <div class="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-5">
+        <p class="text-sm font-semibold tracking-widest text-white/80 uppercase">Y también...</p>
+        <h3 class="text-2xl leading-tight font-semibold md:text-3xl">Si simplemente sientes que el piano te llama</h3>
+        <p class="text-base leading-relaxed text-white/90">
+          No necesitas una razón elaborada. Si hay algo dentro de ti que siempre quiso tocar, esa es razón suficiente.
+          Aquí tienes el camino más claro y directo para hacerlo realidad.
+        </p>
+        <div class="pt-2">
+          <Button
+            title="Agendar una llamada"
+            url="https://calendly.com/sanchezamdany/30min?month=2026-04"
+            target="_blank"
+            variant="white"
+          >
+            <ArrowRight size={16} />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

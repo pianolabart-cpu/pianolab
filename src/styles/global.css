@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+/* @custom-variant dark (&:where(.dark, .dark *)); */
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/onest/wght.css";
+
+:root {
+  /* Fondos */
+  --background: #ffffff;
+  --bg-surface: #f2f2f2;
+  --bg-muted: #f2f2f2;
+
+  /* Texto */
+  --text-heading: #111827;
+  --text-body: #374151;
+  --text-muted: #6b7280;
+
+  /* Bordes */
+  --border-default: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  /* Marca */
+  --brand: #f2421b;
+  --brand-hover: #a60832;
+  --brand-soft: #f2f2f2;
+  --brand-fg: #f2421b;
+  --brand-medium: rgba(242, 66, 27, 0.3);
+  --brand-accent: #f26a1b;
+  --brand-warm: #f26a1b;
+}
+
+/* .dark {
+
+  --background: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-muted: #334155;
+
+
+  --text-heading: #f9fafb;
+  --text-body: #e5e7eb;
+  --text-muted: #9ca3af;
+
+
+  --border-default: #334155;
+  --border-strong: #475569;
+
+
+  --brand: #F2421B;
+  --brand-hover: #A60832;
+  --brand-soft: #1e1b4b;
+  --brand-fg: #F2421B;
+} */
+
+@theme {
+  --color-background: var(--background);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-muted: var(--bg-muted);
+  --color-text-heading: var(--text-heading);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-border-default: var(--border-default);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-strong: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-medium: var(--brand-medium);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-warm: var(--brand-warm);
+}
+
+body {
+  font-family: "Onest Variable", sans-serif;
+}
+
+h1 {
+  font-family: "Inter Variable", sans-serif;
+}
+
+#navbar-sticky a[data-active="true"] {
+  color: var(--brand);
+}

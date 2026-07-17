@@ -1,0 +1,94 @@
+---
+import Button from "./Button.astro";
+import ArrowRight from "./icons/Arrow-right.astro";
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
+// FAQ.astro — PianoLab
+
+const faqs = [
+  {
+    pregunta: "¿Necesito tener un piano o teclado para empezar?",
+    respuesta:
+      "Sí, necesitas algún instrumento para practicar. No tiene que ser un piano de cola; un teclado básico de 61 teclas con sensibilidad al tacto es más que suficiente para comenzar.",
+  },
+  {
+    pregunta: "¿Cuánto tiempo debo practicar al día?",
+    respuesta:
+      "Con 20 a 30 minutos diarios de práctica enfocada verás avances reales. La constancia importa más que la cantidad de horas.",
+  },
+  {
+    pregunta: "¿Es necesario saber leer partituras?",
+    respuesta:
+      "No. El método de PianoLab está diseñado para que empieces a tocar canciones reales desde el primer día, sin necesidad de leer partituras de entrada.",
+  },
+  {
+    pregunta: "¿Funciona para cualquier edad?",
+    respuesta:
+      "Sí. Tenemos alumnos desde los 18 hasta los 60 años. El cerebro tiene capacidad de aprender a cualquier edad; solo necesita el método correcto.",
+  },
+  {
+    pregunta: "¿Cómo son las clases? ¿Son en vivo o grabadas?",
+    respuesta:
+      "Las sesiones son en vivo, personalizadas y adaptadas a tu nivel y ritmo. No es un curso pregrabado; hay acompañamiento real en cada etapa.",
+  },
+  {
+    pregunta: "¿Qué pasa si me quedo atascado en algún punto?",
+    respuesta:
+      "Eso es exactamente para lo que está el acompañamiento. Identificamos el obstáculo juntos y trabajamos específicamente en superarlo, sin que pierdas tiempo dando vueltas solo.",
+  },
+];
+---
+
+<section class="w-full scroll-m-12 bg-gray-50 py-12 md:py-20" id="faq">
+  <div class="mx-auto flex w-full flex-col items-center gap-12 px-4 sm:max-w-screen-lg sm:px-8">
+    <!-- Header -->
+    <div data-animate class="flex max-w-2xl flex-col items-start gap-3 text-left md:items-center md:text-center">
+      <p class="text-brand text-sm font-semibold tracking-widest uppercase">Preguntas frecuentes</p>
+      <h2 class="text-3xl font-semibold text-gray-900 md:text-4xl">Resolvemos tus dudas</h2>
+      <p class="text-lg text-gray-500">Si no encuentras lo que buscas, escríbeme directamente.</p>
+    </div>
+
+    <!-- Acordeón -->
+    <div class="flex w-full flex-col divide-y divide-gray-100">
+      {
+        faqs.map((faq, i) => (
+          <details data-animate style={`--delay: ${i * 80}ms`} class="group cursor-pointer py-5" name="faq">
+            <summary class="flex list-none items-center justify-between gap-4">
+              <span class="group-open:text-brand text-base font-medium text-gray-900 transition-colors">
+                {faq.pregunta}
+              </span>
+              <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-gray-200 transition-transform group-open:rotate-45">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-3 pr-10 text-sm leading-relaxed text-gray-500">{faq.respuesta}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <!-- CTA -->
+    {
+      showCta && (
+        <div data-animate class="flex flex-col items-center gap-3 text-center">
+          <p class="text-sm text-gray-400">¿Tienes alguna otra duda?</p>
+          <Button
+            title="Agenda una llamada gratuita"
+            url="https://calendly.com/sanchezamdany/30min?month=2026-04"
+            data-animate
+            target="_blank"
+          >
+            <ArrowRight size={16} />
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</section>

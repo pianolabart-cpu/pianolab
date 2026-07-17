@@ -1,0 +1,39 @@
+{
+  "name": "pianolab",
+  "version": "0.0.1",
+  "description": "```sh\r npm create astro@latest -- --template basics\r ```",
+  "homepage": "https://github.com/Gmsus4/pianolab#readme",
+  "bugs": {
+    "url": "https://github.com/Gmsus4/pianolab/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gmsus4/pianolab.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/onest": "^5.2.11",
+    "@tailwindcss/vite": "^4.2.4",
+    "astro": "^6.1.10",
+    "flowbite": "^4.0.1",
+    "tailwindcss": "^4.2.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "prettier": "3.8.4",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "0.8.0"
+  }
+}

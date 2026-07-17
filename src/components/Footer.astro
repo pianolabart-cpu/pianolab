@@ -1,0 +1,90 @@
+---
+import Instagram from "./icons/Instagram.astro";
+import Tiktok from "./icons/Tiktok.astro";
+import Youtube from "./icons/Youtube.astro";
+
+// Footer.astro — PianoLab
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-primary border-default w-full border-t">
+  <div
+    class="mx-auto flex w-full flex-col items-center justify-between gap-6 px-4 py-10 sm:max-w-screen-lg sm:px-8 md:flex-row"
+  >
+    <!-- Logo -->
+    <a data-animate href="#hero" class="flex items-center gap-2 transition-opacity hover:opacity-80">
+      <img src="favicon.ico" class="h-6" alt="PianoLab" />
+      <span class="text-heading text-base font-semibold">PianoLab</span>
+    </a>
+
+    <!-- Links -->
+    <ul data-animate class="text-body flex items-center gap-6 text-sm">
+      <li>
+        <a href="#programa" class="hover:text-heading transition-colors">Programa</a>
+      </li>
+      <li>
+        <a href="#testimonials" class="hover:text-heading transition-colors">Testimoniales</a>
+      </li>
+      <li>
+        <a href="#about-me" class="hover:text-heading transition-colors">Sobre mí</a>
+      </li>
+    </ul>
+
+    <!-- Redes -->
+    <div data-animate class="flex items-center gap-3">
+      <a
+        href="https://www.tiktok.com/@dannpiano1"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok"
+        class="border-default text-body hover:text-heading hover:bg-neutral-secondary-soft flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200"
+      >
+        <Tiktok size={20} />
+      </a>
+      <a
+        href="https://www.instagram.com/dannpiano1"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        class="border-default text-body hover:text-heading hover:bg-neutral-secondary-soft flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200"
+      >
+        <Instagram size={20} />
+      </a>
+
+      <!-- Botón subir -->
+      <a
+        data-animate
+        href="#hero"
+        aria-label="Volver arriba"
+        class="border-default text-body hover:text-heading hover:bg-neutral-secondary-soft flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M18 15l-6-6-6 6"></path></svg
+        >
+      </a>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div data-animate class="border-default border-t">
+    <p class="text-body py-4 text-center text-xs">
+      © {year} PianoLab · Todos los derechos reservados
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href="#hero"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+</script>

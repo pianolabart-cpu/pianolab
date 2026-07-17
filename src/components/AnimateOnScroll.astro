@@ -1,0 +1,49 @@
+---
+// AnimateOnScroll.astro — estilos y observer globales para data-animate
+---
+
+<style is:global>
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.5s ease var(--delay, 0ms),
+      transform 0.5s ease var(--delay, 0ms);
+  }
+
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script is:inline>
+  function initAnimateOnScroll() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    const observe = () => {
+      document.querySelectorAll("[data-animate]:not(.visible)").forEach((el) => observer.observe(el));
+    };
+
+    observe();
+
+    const mutationObserver = new MutationObserver(observe);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimateOnScroll);
+  } else {
+    initAnimateOnScroll();
+  }
+</script>

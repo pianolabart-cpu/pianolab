@@ -1,0 +1,151 @@
+---
+// src/pages/404.astro — PianoLab
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import ArrowRight from "../components/icons/Arrow-right.astro";
+---
+
+<Layout title="404 — Página no encontrada · PianoLab" description="Esta página no existe.">
+  <!-- <Navbar /> -->
+
+  <section class="flex min-h-screen w-full items-center justify-center bg-white pt-20">
+    <div class="mx-auto flex w-full flex-col items-center gap-12 px-4 py-20 text-center sm:max-w-screen-lg sm:px-8">
+      <!-- Header + 404 + teclado -->
+      <div data-animate class="flex max-w-2xl flex-col items-center gap-6">
+        <p class="text-brand text-sm font-semibold tracking-widest uppercase">Error 404</p>
+
+        {/* 404 gigante con el "0" en gradiente de marca */}
+        <div class="flex items-baseline justify-center gap-1 md:gap-2">
+          <span class="text-7xl font-bold tracking-tighter text-gray-900 md:text-[10rem]">4</span>
+          <span
+            class="from-brand via-brand-accent to-brand-warm bg-gradient-to-br bg-clip-text text-7xl font-bold tracking-tighter text-transparent md:text-[10rem]"
+            >0</span
+          >
+          <span class="text-7xl font-bold tracking-tighter text-gray-900 md:text-[10rem]">4</span>
+        </div>
+
+        {/* Mini teclado de piano (CSS) */}
+        <div class="relative mx-auto w-full max-w-md pt-4">
+          <div class="flex h-24 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+            {Array.from({ length: 12 }).map(() => <div class="flex-1 border-r border-gray-100 last:border-r-0" />)}
+          </div>
+          <div class="pointer-events-none absolute inset-x-0 top-4 flex h-16">
+            {
+              [6, 13, 27, 34, 40, 54, 61, 75, 82, 88].map((left) => (
+                <div class="absolute h-16 w-[5%] rounded-b-md bg-gray-900" style={`left: ${left}%`} />
+              ))
+            }
+          </div>
+        </div>
+
+        <h1 class="text-4xl font-semibold text-gray-900">Esta página se perdió entre las teclas</h1>
+        <p class="text-lg text-gray-500">
+          La página que buscas no existe o fue movida. Vuelve al inicio y sigue tu camino hacia el piano.
+        </p>
+      </div>
+
+      {/* Links en 3 columnas */}
+      <!-- <div data-animate style="--delay: 80ms" class="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+        <a
+          href="/#programa"
+          class="group flex flex-col gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-6 text-left transition-shadow duration-300 hover:shadow-md"
+        >
+          <div class="bg-brand/10 text-brand flex h-10 w-10 items-center justify-center rounded-xl">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="flex flex-col gap-1">
+            <p class="text-base font-semibold text-gray-900">El programa</p>
+            <p class="text-sm leading-relaxed text-gray-500">Descubre qué encontrarás dentro de PianoLab.</p>
+          </div>
+          <span class="text-brand text-sm font-medium group-hover:underline">Ver programa →</span>
+        </a>
+
+        <a
+          href="/#testimonials"
+          class="group flex flex-col gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-6 text-left transition-shadow duration-300 hover:shadow-md"
+        >
+          <div class="bg-brand/10 text-brand flex h-10 w-10 items-center justify-center rounded-xl">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="flex flex-col gap-1">
+            <p class="text-base font-semibold text-gray-900">Testimonios</p>
+            <p class="text-sm leading-relaxed text-gray-500">Lee las historias de alumnos que ya tocan piano.</p>
+          </div>
+          <span class="text-brand text-sm font-medium group-hover:underline">Ver testimonios →</span>
+        </a>
+
+        <a
+          href="/#faq"
+          class="group flex flex-col gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-6 text-left transition-shadow duration-300 hover:shadow-md"
+        >
+          <div class="bg-brand/10 text-brand flex h-10 w-10 items-center justify-center rounded-xl">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="flex flex-col gap-1">
+            <p class="text-base font-semibold text-gray-900">Preguntas frecuentes</p>
+            <p class="text-sm leading-relaxed text-gray-500">Resuelve tus dudas antes de dar el primer paso.</p>
+          </div>
+          <span class="text-brand text-sm font-medium group-hover:underline">Ver preguntas →</span>
+        </a>
+      </div> -->
+
+      {/* CTAs */}
+      <div data-animate style="--delay: 160ms" class="flex flex-col items-center gap-3">
+        <p class="text-sm text-gray-400">O simplemente vuelve al inicio</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <Button title="Volver al inicio" url="/">
+            <ArrowRight size={16} />
+          </Button>
+          <Button
+            title="Agenda una llamada gratis"
+            url="https://calendly.com/sanchezamdany/30min?month=2026-04"
+            target="_blank"
+          >
+            <ArrowRight size={16} />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <Footer /> -->
+</Layout>

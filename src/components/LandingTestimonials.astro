@@ -1,0 +1,187 @@
+---
+// LandingTestimonials.astro — Carrusel con dots
+const testimonials = [
+  {
+    name: "Adjani",
+    member: "Miembro desde 2026",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Adjani",
+    url: "https://pub-3d6842c2599044c2ad06fdd8c9e1a81e.r2.dev/Testimonio%20Adjani.mp4",
+    quote:
+      "La verdad es que sí he visto mucho progreso, sin contar que además las explicaciones son maravillosas y la clase en vivo te da para aprender hasta el cielo.",
+    poster: "/testimonials/adjani.webp",
+  },
+  {
+    name: "Eddy",
+    member: "Miembro desde 2026",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Eddy",
+    url: "https://pub-3d6842c2599044c2ad06fdd8c9e1a81e.r2.dev/Testimonio%20Eddy.mp4",
+    quote:
+      "Fue todo un reto personal tratar de aprender todos los fundamentos. Es bonito tocar un instrumento, gracias a esto lo estoy logrando.",
+    poster: "/testimonials/eddy.webp",
+  },
+];
+---
+
+<section class="relative w-full scroll-m-12 bg-white py-16 md:py-20" id="testimonios">
+  {/* Línea de gradiente superior + burbujas sutiles */}
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      class="via-brand/40 absolute top-0 left-1/2 h-px w-2/3 max-w-2xl -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent"
+    >
+    </div>
+    <span class="bg-brand-accent/20 absolute top-16 right-[6%] h-2 w-2 rounded-full"></span>
+    <span class="bg-brand-warm/30 absolute top-32 right-[14%] h-1 w-1 rounded-full"></span>
+    <span class="bg-brand/20 absolute bottom-20 left-[8%] h-1.5 w-1.5 rounded-full"></span>
+  </div>
+
+  <div class="relative mx-auto flex w-full flex-col items-center gap-12 px-4 sm:max-w-screen-2xl sm:px-8">
+    {/* Header */}
+    <div data-animate class="flex max-w-2xl flex-col items-center gap-3 text-center">
+      <p class="text-brand text-xs font-semibold tracking-widest uppercase md:text-sm">Testimonios reales</p>
+      <h2 class="text-3xl font-semibold text-gray-900 md:text-4xl">Testimonios de nuestros miembros</h2>
+      <p class="text-lg text-gray-500">Historias reales de personas que ya están obteniendo resultados</p>
+    </div>
+
+    {/* Carrusel */}
+    <div class="w-full">
+      <div id="testimonial-carousel" class="relative w-full overflow-hidden">
+        <div id="carousel-track" class="flex transition-transform duration-500 ease-out">
+          {
+            testimonials.map((t, i) => (
+              <div class="carousel-slide w-full flex-shrink-0 px-2 md:px-4" data-index={i}>
+                <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
+                  {/* Video */}
+                  <div class="relative aspect-video w-full overflow-hidden rounded-2xl bg-black">
+                    <video
+                      class="h-full w-full object-cover"
+                      controls
+                      preload="auto"
+                      playsinline
+                      controlslist="nodownload"
+                      oncontextmenu="return false"
+                      poster={t.poster}
+                    >
+                      <source src={t.url} type="video/mp4" />
+                      Tu navegador no soporta el elemento de video.
+                    </video>
+                  </div>
+
+                  {/* Content */}
+                  <div class="flex flex-col gap-6">
+                    <p class="text-xl leading-relaxed font-medium text-gray-800 md:text-2xl">{t.quote}</p>
+
+                    <div class="flex flex-col pt-2">
+                      <p class="text-base font-semibold text-gray-900">{t.name}</p>
+                      <p class="text-brand text-sm font-medium">{t.member}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* Dots + flechas */}
+      <div class="mt-10 flex items-center justify-center gap-6">
+        <button
+          id="carousel-prev"
+          aria-label="Testimonio anterior"
+          class="hover:border-brand/40 hover:text-brand flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+        </button>
+
+        <div id="carousel-dots" class="flex items-center gap-2">
+          {
+            testimonials.map((_, i) => (
+              <button
+                data-index={i}
+                aria-label={`Ir al testimonio ${i + 1}`}
+                class:list={[
+                  "h-2 rounded-full transition-all duration-300",
+                  i === 0 ? "bg-brand w-8" : "w-2 bg-gray-300",
+                ]}
+              />
+            ))
+          }
+        </div>
+
+        <button
+          id="carousel-next"
+          aria-label="Siguiente testimonio"
+          class="hover:border-brand/40 hover:text-brand flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 18l6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCarousel() {
+    const track = document.getElementById("carousel-track");
+    const dots = document.querySelectorAll("#carousel-dots button");
+    const prev = document.getElementById("carousel-prev");
+    const next = document.getElementById("carousel-next");
+    const slides = document.querySelectorAll(".carousel-slide");
+
+    if (!track || slides.length === 0) return;
+
+    let current = 0;
+    const total = slides.length;
+
+    function goTo(index: number) {
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      current = index;
+      track!.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, i) => {
+        const isActive = i === current;
+        dot.classList.toggle("w-8", isActive);
+        dot.classList.toggle("bg-brand", isActive);
+        dot.classList.toggle("w-2", !isActive);
+        dot.classList.toggle("bg-gray-300", !isActive);
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const index = parseInt((dot as HTMLElement).dataset.index || "0");
+        goTo(index);
+      });
+    });
+
+    prev?.addEventListener("click", () => goTo(current - 1));
+    next?.addEventListener("click", () => goTo(current + 1));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCarousel);
+  } else {
+    initCarousel();
+  }
+</script>

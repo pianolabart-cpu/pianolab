@@ -1,0 +1,100 @@
+---
+// LandingHero.astro — Título + video principal (dark, con color de marca)
+
+const youtubeId = "GAIZxaToV2A";
+---
+
+<section class="relative w-full scroll-m-12 overflow-hidden bg-gray-950 py-16 text-white md:py-24" id="video-principal">
+  {/* Glow de marca + burbujas decorativas */}
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    {/* Glow radial naranja */}
+    <div
+      class="absolute top-1/2 left-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2"
+      style="background: radial-gradient(ellipse at center, rgba(242, 66, 27, 0.18), transparent 65%);"
+    >
+    </div>
+    {/* Burbujas */}
+    <span class="bg-brand-accent/40 absolute top-16 left-[8%] h-3 w-3 rounded-full"></span>
+    <span class="bg-brand-warm/50 absolute top-32 left-[20%] h-1.5 w-1.5 rounded-full"></span>
+    <span class="bg-brand/35 absolute top-24 right-[12%] h-2 w-2 rounded-full"></span>
+    <span class="bg-brand-accent/60 absolute top-48 right-[28%] h-1 w-1 rounded-full"></span>
+    <span class="bg-brand/25 absolute bottom-40 left-[15%] h-2 w-2 rounded-full"></span>
+    <span class="bg-brand-warm/45 absolute right-[18%] bottom-24 h-1.5 w-1.5 rounded-full"></span>
+    <span class="bg-brand-accent/50 absolute top-1/3 left-1/2 h-1 w-1 rounded-full"></span>
+    {/* Línea de gradiente arriba */}
+    <div
+      class="via-brand/60 absolute top-0 left-1/2 h-px w-1/2 max-w-md -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent"
+    >
+    </div>
+  </div>
+
+  <div class="relative mx-auto flex w-full flex-col items-center gap-8 px-4 sm:max-w-screen-lg sm:px-8">
+    {/* Header */}
+    <div data-animate class="flex max-w-2xl flex-col items-center gap-4 text-center">
+      <p class="text-brand text-xs font-semibold tracking-widest uppercase md:text-sm">Video presentación</p>
+      <h1 class="text-3xl leading-[1.1] font-semibold tracking-tight md:text-5xl">
+        Todo lo que necesitas saber sobre
+        <span class="from-brand via-brand-accent to-brand-warm bg-gradient-to-r bg-clip-text text-transparent">
+          PianoLab
+        </span>
+      </h1>
+      <p class="text-base text-gray-400 md:text-lg">Mira el video completo y conoce cómo es el programa por dentro</p>
+    </div>
+
+    {/* Video */}
+    <div data-animate class="w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-white/10">
+      <video class="h-full w-full" controls playsinline preload="metadata" controlslist="nodownload">
+        <source src="https://pub-3d6842c2599044c2ad06fdd8c9e1a81e.r2.dev/videok.mp4" type="video/mp4" />
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+
+    {/* Indicador de scroll */}
+    <a
+      href="#testimonios"
+      data-animate
+      class="group mt-2 flex flex-col items-center gap-3 text-gray-400 transition-colors hover:text-white md:mt-4"
+      aria-label="Ver testimonios"
+    >
+      <span class="text-xs font-medium tracking-widest uppercase"> Ver testimonios </span>
+      <span
+        class="group-hover:border-brand/60 flex h-10 w-6 items-start justify-center rounded-full border-2 border-gray-600 p-1.5 transition-colors"
+      >
+        <span class="scroll-dot bg-brand h-2 w-1 rounded-full"></span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll-dot-anim {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+  }
+  .scroll-dot {
+    animation: scroll-dot-anim 1.6s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+</script>

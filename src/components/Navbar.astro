@@ -1,0 +1,276 @@
+---
+import Button from "./Button.astro";
+import ArrowRight from "./icons/Arrow-right.astro";
+---
+
+<nav class="fixed start-0 top-0 z-40 w-full border-b border-gray-200/80 bg-white/80 backdrop-blur-3xl">
+  <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+    <a href="/" class="z-50 flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="favicon.ico" class="h-7" alt="PianoLab Logo" />
+      <span class="self-center text-xl font-semibold whitespace-nowrap text-gray-900">PianoLab</span>
+    </a>
+    <div class="flex items-center gap-2 md:order-2 lg:gap-3">
+      {/* CTA desktop */}
+      <div class="hidden md:inline-flex">
+        <Button
+          title="Agenda una llamada"
+          url="https://calendly.com/sanchezamdany/30min?month=2026-04"
+          data-animate
+          target="_blank"
+        />
+      </div>
+      {/* Hamburger button - solo mobile */}
+      <button
+        id="menu-toggle"
+        type="button"
+        class="relative z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-gray-50 transition-colors hover:bg-gray-100 md:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <span class="hamburger-lines flex flex-col gap-1.5">
+          <span class="line-top block h-0.5 w-5 origin-center rounded-full bg-gray-900 transition-all duration-300"
+          ></span>
+          <span class="line-middle block h-0.5 w-5 rounded-full bg-gray-900 transition-all duration-300"></span>
+          <span class="line-bottom block h-0.5 w-3.5 origin-center rounded-full bg-gray-900 transition-all duration-300"
+          ></span>
+        </span>
+      </button>
+    </div>
+    {/* Links desktop */}
+    <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-sticky">
+      <ul
+        class="rounded-base mt-4 flex flex-col border border-gray-200 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse"
+      >
+        <li>
+          <a
+            href="#programa"
+            class="md:hover:text-brand block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
+            >Programa</a
+          >
+        </li>
+        <li>
+          <a
+            href="#testimonials"
+            class="md:hover:text-brand block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
+            >Testimoniales</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about-me"
+            class="md:hover:text-brand block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
+            >Sobre mí</a
+          >
+        </li>
+        <li>
+          <a
+            href="#faq"
+            class="md:hover:text-brand block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
+            >Preguntas frecuentes</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{/* Mobile menu overlay */}
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-30 translate-x-full overflow-y-auto bg-white transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden"
+  aria-hidden="true"
+>
+  {/* Burbujas decorativas (como el botón) */}
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+    <span class="bg-brand-accent/25 absolute top-12 right-8 h-3 w-3 rounded-full"></span>
+    <span class="bg-brand-warm/40 absolute top-24 right-24 h-1.5 w-1.5 rounded-full"></span>
+    <span class="bg-brand/20 absolute top-1/3 left-10 h-2 w-2 rounded-full"></span>
+    <span class="bg-brand-accent/45 absolute top-1/2 right-16 h-1 w-1 rounded-full"></span>
+    <span class="bg-brand/15 absolute bottom-40 left-20 h-2.5 w-2.5 rounded-full"></span>
+    <span class="bg-brand-warm/35 absolute right-12 bottom-24 h-1.5 w-1.5 rounded-full"></span>
+    <span class="bg-brand-accent/30 absolute bottom-1/3 left-1/2 h-1 w-1 rounded-full"></span>
+  </div>
+
+  <div class="relative z-10 flex min-h-full flex-col px-6 pt-24 pb-8">
+    {/* Label superior */}
+    <div class="mb-8">
+      <p class="text-brand mb-2 text-xs font-semibold tracking-widest uppercase">Navegación</p>
+      <div class="from-brand to-brand-accent h-0.5 w-12 rounded-full bg-gradient-to-r"></div>
+    </div>
+
+    {/* Links de navegación */}
+    <ul class="flex flex-1 flex-col gap-1">
+      {
+        [
+          { href: "#programa", label: "Programa" },
+          { href: "#testimonials", label: "Testimoniales" },
+          { href: "#about-me", label: "Sobre mí" },
+          { href: "#faq", label: "Preguntas frecuentes" },
+        ].map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="mobile-link group hover:text-brand flex items-center justify-between border-b border-gray-100 py-4 text-gray-900 transition-colors"
+            >
+              <span class="text-2xl font-semibold">{item.label}</span>
+              <span class="flex items-center gap-3">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  class="text-brand group-hover:text-brand transition-all group-hover:translate-x-1"
+                >
+                  <path
+                    d="M5 12h14M12 5l7 7-7 7"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {/* CTA al fondo */}
+    <div class="mt-8 border-t border-gray-100 pt-6">
+      <p class="mb-4 text-sm text-gray-500">¿Listo para empezar?</p>
+      <Button
+        title="Agendar una llamada"
+        url="https://calendly.com/sanchezamdany/30min?month=2026-04"
+        target="_blank"
+        class="w-full"
+        size="lg"
+      >
+        <ArrowRight size={16} />
+      </Button>
+      <div class="mt-5 flex items-center justify-center gap-2 text-sm text-gray-500">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          class="text-brand"
+        >
+          <path d="M9 12l2 2 4-4"></path>
+          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+        </svg>
+        Sin compromiso · 100% gratis
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Animación del hamburger a X */
+  #menu-toggle[aria-expanded="true"] .line-top {
+    transform: translateY(8px) rotate(45deg);
+    width: 1.25rem;
+  }
+  #menu-toggle[aria-expanded="true"] .line-middle {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #menu-toggle[aria-expanded="true"] .line-bottom {
+    transform: translateY(-8px) rotate(-45deg);
+    width: 1.25rem;
+  }
+  #menu-toggle[aria-expanded="true"] {
+    background: white;
+    border-color: white;
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  function toggleMenu() {
+    const isOpen = menuToggle?.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  function openMenu() {
+    menuToggle?.setAttribute("aria-expanded", "true");
+    mobileMenu?.classList.remove("translate-x-full");
+    mobileMenu?.classList.add("translate-x-0");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    menuToggle?.setAttribute("aria-expanded", "false");
+    mobileMenu?.classList.add("translate-x-full");
+    mobileMenu?.classList.remove("translate-x-0");
+    mobileMenu?.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  menuToggle?.addEventListener("click", toggleMenu);
+
+  // Cerrar al hacer click en un link
+  document.querySelectorAll(".mobile-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Cerrar con Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+</script>
+
+<script>
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll('#navbar-sticky a[href^="#"]');
+
+  function setActive() {
+    const navHeight = document.querySelector("nav")?.offsetHeight ?? 0;
+    const scrollY = window.scrollY + navHeight + 10;
+
+    let current = "";
+    sections.forEach((section) => {
+      const el = section as HTMLElement;
+      if (el.offsetTop <= scrollY) {
+        current = el.id;
+      }
+    });
+
+    navLinks.forEach((link) => {
+      delete (link as HTMLElement).dataset.active;
+      if (link.getAttribute("href") === `#${current}`) {
+        (link as HTMLElement).dataset.active = "true";
+      }
+    });
+  }
+
+  window.addEventListener("scroll", setActive);
+  setActive();
+</script>

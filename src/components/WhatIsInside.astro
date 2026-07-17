@@ -1,0 +1,171 @@
+---
+import Button from "./Button.astro";
+import ArrowRight from "./icons/Arrow-right.astro";
+import Live from "./icons/Live.astro";
+import Community from "./icons/Community.astro";
+import UserCheck from "./icons/UserCheck.astro";
+import Route from "./icons/Route.astro";
+import Headset from "./icons/Headset.astro";
+
+// WhatIsInside.astro — PianoLab
+
+const modulos = [
+  {
+    numero: "01",
+    titulo: "Programa estructurado paso a paso",
+    descripcion:
+      "Olvídate de saltar de tutorial en tutorial. Sigue una ruta clara diseñada para que cada lección construya sobre la anterior sin dejar huecos en tu aprendizaje.",
+    icono: Route,
+  },
+  {
+    numero: "02",
+    titulo: "Acompañamiento personalizado 24/7",
+    descripcion:
+      "Nunca estarás solo frente al piano. Resuelve tus dudas en el momento que surjan y recibe feedback constante para asegurar que tu técnica sea impecable.",
+    icono: Headset,
+  },
+  {
+    numero: "03",
+    titulo: "Sesiones en vivo grupales",
+    descripcion:
+      "Participa en clases dinámicas donde aprenderás de las dudas de otros y compartirás tus avances, creando un entorno de aprendizaje acelerado y compartido.",
+    icono: Live,
+  },
+  {
+    numero: "04",
+    titulo: "Material exclusivo de refuerzo",
+    descripcion:
+      "Accede a partituras simplificadas, guías visuales y ejercicios diseñados específicamente para complementar lo visto en las sesiones y acelerar tu destreza.",
+    icono: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+  },
+  {
+    numero: "05",
+    titulo: "Comunidad que impulsa tu motivación",
+    descripcion:
+      "Únete a un grupo de personas con tu mismo objetivo. Compartir el proceso hace que el camino sea más divertido y te mantiene enfocado en tus metas.",
+    icono: Community,
+  },
+  {
+    numero: "06",
+    titulo: "Sesiones individuales",
+    descripcion:
+      "Comenzamos trazando un plan solo para ti y cerramos evaluando tus logros, asegurando que cada etapa del programa se cumpla según tus necesidades personales.",
+    icono: UserCheck,
+  },
+];
+---
+
+<section class="via-brand/5 w-full scroll-m-12 bg-gradient-to-b from-white to-white py-12 md:py-20" id="programa">
+  <div class="mx-auto flex w-full flex-col items-center gap-12 px-4 sm:max-w-screen-lg sm:px-8">
+    <!-- Header -->
+    <div data-animate class="flex max-w-2xl flex-col items-start gap-3 text-left md:items-center md:text-center">
+      <p class="text-brand text-sm font-semibold tracking-widest uppercase">El programa</p>
+      <h2 class="text-3xl leading-tight font-semibold text-gray-900 sm:text-4xl md:text-4xl">
+        ¿Qué encontrarás dentro de PianoLab?
+      </h2>
+      <p class="text-base leading-relaxed text-gray-500 sm:text-lg">
+        Todo lo que necesitas para pasar de cero a tocar el piano con confianza.
+      </p>
+    </div>
+
+    <!-- Grid de módulos -->
+    <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        modulos.map((m, i) => {
+          const IconComponent = typeof m.icono !== "string" ? m.icono : null;
+          const iconString = typeof m.icono === "string" ? m.icono : null;
+          return (
+            <div
+              data-animate
+              style={`--delay: ${i * 80}ms`}
+              class="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              {/* Header naranja con ícono y número */}
+              <div class="from-brand to-brand-warm relative flex items-center justify-between overflow-hidden bg-gradient-to-br p-5">
+                {/* Burbujas en el header */}
+                <span aria-hidden="true" class="pointer-events-none absolute inset-0">
+                  <span class="absolute top-2 right-12 h-2 w-2 rounded-full bg-white/30 transition-transform duration-500 group-hover:-translate-y-1" />
+                  <span class="absolute bottom-2 left-16 h-1.5 w-1.5 rounded-full bg-white/40 transition-transform duration-500 group-hover:-translate-y-1.5" />
+                  <span class="absolute top-3 left-1/2 h-1 w-1 rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-y-1" />
+                </span>
+                <div class="relative z-10 flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-[22px] text-white backdrop-blur-sm">
+                  {IconComponent ? <IconComponent /> : <Fragment set:html={iconString} />}
+                </div>
+                <span class="relative z-10 text-3xl leading-none font-bold text-white select-none">{m.numero}</span>
+              </div>
+              {/* Contenido blanco */}
+              <div class="relative overflow-hidden p-6">
+                {/* Burbujas sutiles en el contenido */}
+                <span aria-hidden="true" class="pointer-events-none absolute inset-0">
+                  <span class="bg-brand-accent/20 absolute right-4 bottom-3 h-2 w-2 rounded-full transition-transform duration-500 group-hover:-translate-y-1" />
+                  <span class="bg-brand-warm/30 absolute top-2 right-12 h-1 w-1 rounded-full transition-transform duration-500 group-hover:-translate-y-1.5" />
+                </span>
+                <div class="relative z-10 flex flex-col gap-2">
+                  <h3 class="text-base font-semibold text-gray-900">{m.titulo}</h3>
+                  <p class="text-sm leading-relaxed text-gray-500">{m.descripcion}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- Bloque de garantía (full orange) -->
+    <div
+      data-animate
+      class="group from-brand to-brand-warm relative w-full max-w-3xl overflow-hidden rounded-2xl bg-gradient-to-br p-8 text-white md:p-10"
+    >
+      {/* Burbujas decorativas blancas */}
+      <span aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <span
+          class="absolute top-4 left-6 h-3 w-3 rounded-full bg-white/30 transition-transform duration-500 group-hover:-translate-y-1"
+        ></span>
+        <span
+          class="absolute top-10 left-16 h-1.5 w-1.5 rounded-full bg-white/40 transition-transform duration-500 group-hover:-translate-y-1.5"
+        ></span>
+        <span
+          class="absolute right-12 bottom-6 h-2 w-2 rounded-full bg-white/25 transition-transform duration-500 group-hover:-translate-y-1"
+        ></span>
+        <span
+          class="absolute top-6 right-6 h-1 w-1 rounded-full bg-white/50 transition-transform duration-500 group-hover:-translate-y-1.5"
+        ></span>
+        <span
+          class="absolute right-20 bottom-10 h-1.5 w-1.5 rounded-full bg-white/35 transition-transform duration-500 group-hover:-translate-y-2"
+        ></span>
+      </span>
+      <div class="relative z-10 flex flex-col items-center gap-6 md:flex-row md:gap-8">
+        <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-white"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+        </div>
+        <div class="flex flex-1 flex-col gap-2 text-center md:text-left">
+          <h3 class="text-xl font-semibold">Sin compromisos a largo plazo</h3>
+          <p class="text-sm leading-relaxed text-white/90">
+            Empezamos con una llamada gratuita para conocernos y ver si hay fit. Solo avanzamos si los dos sentimos que
+            tiene sentido. Sin presión, sin letra pequeña.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div data-animate>
+      <Button title="Empieza ahora" url="https://calendly.com/sanchezamdany/30min?month=2026-04" target="_blank">
+        <ArrowRight size={16} />
+      </Button>
+    </div>
+  </div>
+</section>

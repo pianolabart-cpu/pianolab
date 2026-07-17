@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LandingHero from "../components/LandingHero.astro";
+import LandingTestimonials from "../components/LandingTestimonials.astro";
+import FAQ from "../components/FAQ.astro";
+---
+
+<Layout
+  title="PianoLab — Descubre cómo funciona"
+  description="Conoce cómo funciona PianoLab a través de videos y testimonios reales de nuestros miembros."
+>
+  <LandingHero />
+  <LandingTestimonials />
+  <FAQ showCta={false} />
+</Layout>
