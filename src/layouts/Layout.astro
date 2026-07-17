@@ -1,40 +1,60 @@
 ---
 import AnimateOnScroll from "../components/AnimateOnScroll.astro";
+import Seo from "../components/Seo.astro";
+import JsonLd from "../components/JsonLd.astro";
 import "../styles/global.css";
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article" | "video.other";
+  noindex?: boolean;
+  hideJsonLd?: boolean;
 }
 
-const { title = "PianoLab", description = "Aprende piano de forma efectiva" } = Astro.props;
+const {
+  title = "PianoLab — Aprende piano desde cero con un método para adultos",
+  description = "Curso de piano online, en vivo y personalizado para adultos que quieren aprender desde cero. Acompañamiento real, resultados visibles desde las primeras semanas.",
+  image,
+  type = "website",
+  noindex = false,
+  hideJsonLd = false,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f2421b" />
+    <meta name="author" content="Daniela Sánchez Amador" />
+    <meta name="geo.region" content="MX" />
+    <meta name="geo.placename" content="Ciudad de México" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+    />
+
+    {!hideJsonLd && <JsonLd />}
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- <script>
-      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    </script> -->
   </head>
   <body>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js" defer></script>
     <slot />
     <AnimateOnScroll />
   </body>

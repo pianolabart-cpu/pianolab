@@ -21,10 +21,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/onest": "^5.2.11",
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.1.10",
+    "astro": "^7.1.1",
     "flowbite": "^4.0.1",
     "tailwindcss": "^4.2.4"
   },

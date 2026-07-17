@@ -1,0 +1,131 @@
+---
+// JsonLd.astro — Datos estructurados Schema.org
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://pianolab.art";
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  name: "PianoLab",
+  url: siteUrl,
+  logo: `${siteUrl}/web-app-manifest-512x512.png`,
+  description:
+    "Curso de piano online diseñado para adultos que quieren aprender desde cero con acompañamiento personalizado.",
+  sameAs: [
+    "https://www.tiktok.com/@dannpiano1",
+    "https://www.instagram.com/dannpiano1",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    url: "https://calendly.com/sanchezamdany/30min",
+  },
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: "PianoLab",
+  inLanguage: "es-MX",
+  publisher: { "@id": `${siteUrl}/#organization` },
+};
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  name: "Daniela Sánchez Amador",
+  jobTitle: "Pianista y profesora de piano",
+  description:
+    "Pianista mexicana, Licenciada en Piano por la Escuela Superior de Música. Más de 10 años de experiencia enseñando piano a adultos.",
+  worksFor: { "@id": `${siteUrl}/#organization` },
+  sameAs: [
+    "https://www.tiktok.com/@dannpiano1",
+    "https://www.instagram.com/dannpiano1",
+  ],
+};
+
+const course = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": `${siteUrl}/#course`,
+  name: "PianoLab — Aprende piano desde cero",
+  description:
+    "Programa de piano en línea, en vivo y personalizado, diseñado para adultos que quieren aprender de verdad y obtener resultados reales en poco tiempo.",
+  provider: { "@id": `${siteUrl}/#organization` },
+  instructor: { "@id": `${siteUrl}/#person` },
+  inLanguage: "es-MX",
+  educationalLevel: "Principiante",
+  isAccessibleForFree: false,
+  offers: {
+    "@type": "Offer",
+    category: "Curso en línea",
+    url: "https://calendly.com/sanchezamdany/30min",
+    priceCurrency: "MXN",
+    availability: "https://schema.org/InStock",
+  },
+};
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Necesito tener un piano o teclado para empezar?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí, necesitas algún instrumento para practicar. No tiene que ser un piano de cola; un teclado básico de 61 teclas con sensibilidad al tacto es más que suficiente para comenzar.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuánto tiempo debo practicar al día?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Con 20 a 30 minutos diarios de práctica enfocada verás avances reales. La constancia importa más que la cantidad de horas.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Es necesario saber leer partituras?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. El método de PianoLab está diseñado para que empieces a tocar canciones reales desde el primer día, sin necesidad de leer partituras de entrada.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Funciona para cualquier edad?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Tenemos alumnos desde los 18 hasta los 60 años. El cerebro tiene capacidad de aprender a cualquier edad; solo necesita el método correcto.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cómo son las clases? ¿Son en vivo o grabadas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Las sesiones son en vivo, personalizadas y adaptadas a tu nivel y ritmo. No es un curso pregrabado; hay acompañamiento real en cada etapa.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué pasa si me quedo atascado en algún punto?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Eso es exactamente para lo que está el acompañamiento. Identificamos el obstáculo juntos y trabajamos específicamente en superarlo, sin que pierdas tiempo dando vueltas solo.",
+      },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organization)} />
+<script type="application/ld+json" set:html={JSON.stringify(website)} />
+<script type="application/ld+json" set:html={JSON.stringify(person)} />
+<script type="application/ld+json" set:html={JSON.stringify(course)} />
+<script type="application/ld+json" set:html={JSON.stringify(faq)} />
